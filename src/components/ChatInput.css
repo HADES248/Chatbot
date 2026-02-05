@@ -1,34 +1,76 @@
-.send-button {
-  background-color: rgb(25, 135, 84);
-  color: white;
-  padding: 12px 20px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  cursor: pointer
-}
-
-.clear-button {
-  background-color: rgb(236, 235, 235);
-  color: black;
-  padding: 12px 20px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  cursor: pointer
+.chat-input-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .chat-input {
-  padding: 12px 15px;
-  border-radius: 10px;
-  border-width: 1px;
-  font-size: 15px;
   flex-grow: 1;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.chat-input-container {
-  display: flex;
-  margin-bottom: 30px;
+.chat-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-input:focus {
+  border-color: rgb(0, 110, 255);
+  box-shadow: 0 0 0 2px rgba(0, 110, 255, 0.35);
+}
+
+.send-button {
+  background: linear-gradient(135deg,
+      rgb(0, 110, 255),
+      rgb(0, 180, 255));
+  color: white;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.send-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 140, 255, 0.55);
+}
+
+.send-button:active {
+  transform: scale(0.97);
+}
+
+.clear-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.25s ease, border 0.25s ease;
+}
+
+.clear-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.clear-button:active {
+  transform: scale(0.96);
 }

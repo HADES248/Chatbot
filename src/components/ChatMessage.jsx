@@ -28,7 +28,11 @@ export function ChatMessage({ message, sender, time }) {
       {sender === 'robot' && (
         <img src={RobotProfileImage} className="chat-message-profile" />
       )}
-      <div className="chat-message-text">
+      <div className={
+        sender === 'robot'
+          ? 'chat-message-text robot-text'
+          : 'chat-message-text user-text'
+      }>
         {message}
         {time && <div className="chat-message-time">
           {dayjs(time).format('h:mma')}
