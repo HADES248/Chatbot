@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 
 // Defining routes
 app.use('/bot/v1', chatbotRoutes);
+app.use('/api/v1', chatbotRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

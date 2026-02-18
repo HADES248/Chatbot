@@ -8,6 +8,7 @@ import './ChatInput.css'
 export function ChatInput({ chatMessages, setChatMessages }) {
   const [inputText, setInputText] = useState('')
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationId, setConversationId] = useState(null);
 
   function saveInputText(event) {
     setInputText(event.target.value);
@@ -41,14 +42,25 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     //const response = await Chatbot.getResponseAsync(inputText);
 
     // Using My Code
-    const response = await axios.post("http://localhost:4002/bot/v1/message", {
-      text: inputText
+    // const response = await axios.post("http://localhost:4002/bot/v1/message", {
+    //   text: inputText,
+    // });
+
+    // Using gemini API
+    const geminiResponse = await axios.post("http://localhost:4002/api/v1/gemini", {
+      text: inputText,
+      conversationId
     });
+
+    if (!conversationId) {
+      setConversationId(geminiResponse.data.conversationId);
+      console.log(geminiResponse.data.conversationId);
+    }
 
     setChatMessages([
       ...newChatMessage.slice(0, -1),
       {
-        message: response ? response.data.botMessage : 'Loading',
+        message: geminiResponse ? geminiResponse.data.botMessage : 'Loading',
         sender: 'robot',
         id: crypto.randomUUID(),
         time: dayjs().valueOf()
