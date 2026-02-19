@@ -25,7 +25,7 @@ export function ChatMessage({ message, sender, time }) {
         ? 'chat-message-user'
         : 'chat-message-robot'
     }>
-      {sender === 'robot' && (
+      {sender === 'bot' && (
         <img src={RobotProfileImage} className="chat-message-profile" />
       )}
       <div className={

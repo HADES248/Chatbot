@@ -73,10 +73,10 @@ function ChatMessages({ chatMessages }) {
         chatMessages.map((chatMessage) => {
           return (
             <ChatMessage
-              message={chatMessage.message}
+              message={chatMessage.text}
               sender={chatMessage.sender}
-              time={chatMessage.time}
-              key={chatMessage.id}
+              time={chatMessage.timestamp}
+              key={chatMessage._id}
             />
           )
         })

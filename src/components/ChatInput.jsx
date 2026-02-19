@@ -54,7 +54,6 @@ export function ChatInput({ chatMessages, setChatMessages }) {
 
     if (!conversationId) {
       setConversationId(geminiResponse.data.conversationId);
-      console.log(geminiResponse.data.conversationId);
     }
 
     setChatMessages([
