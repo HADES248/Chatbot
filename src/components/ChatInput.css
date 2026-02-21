@@ -54,23 +54,3 @@
 .send-button:active {
   transform: scale(0.97);
 }
-
-.clear-button {
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  padding: 14px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background 0.25s ease, border 0.25s ease;
-}
-
-.clear-button:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.clear-button:active {
-  transform: scale(0.96);
-}

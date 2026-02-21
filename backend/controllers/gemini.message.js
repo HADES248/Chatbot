@@ -20,7 +20,6 @@ export async function geminiMessage(req, res) {
     let conversation;
 
     conversation = await conversationModel.findById(conversationId);
-    console.log("Conversation found:", conversation);
 
     if (!conversation) {
       conversation = await conversationModel.create({

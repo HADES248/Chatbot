@@ -10,20 +10,18 @@
   backdrop-filter: blur(8px);
 }
 
-/* HEADER */
 .sidebar-header {
   padding: 18px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* NEW CHAT BUTTON */
 .new-chat-btn {
   width: 100%;
   padding: 12px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  color: white;
+  color: #8e8ea0;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
@@ -37,21 +35,18 @@
   transform: translateY(-1px);
 }
 
-/* CONVERSATION LIST */
 .conversation-list {
   flex: 1;
   overflow-y: auto;
   padding: 12px;
 }
 
-/* EMPTY TEXT */
 .empty-text {
   color: #8e8ea0;
   font-size: 14px;
   padding: 10px;
 }
 
-/* CONVERSATION ITEM */
 .conversation-item {
   padding: 12px;
   border-radius: 10px;
@@ -64,19 +59,24 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
+.delete-button {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
 .conversation-item:hover {
   background: rgba(0, 102, 255, 0.12);
   transform: translateX(4px);
 }
 
-/* ACTIVE CONVERSATION */
 .conversation-item.active {
   background: rgba(0, 102, 255, 0.25);
   border: 1px solid rgba(0, 102, 255, 0.4);
   box-shadow: 0 0 10px rgba(0, 102, 255, 0.4);
 }
 
-/* TITLE */
 .conversation-title {
   font-size: 14px;
   white-space: nowrap;
@@ -85,17 +85,16 @@
   max-width: 190px;
 }
 
-/* FOOTER */
 .sidebar-footer {
   padding: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* USER PROFILE */
 .user-profile {
   display: flex;
   align-items: center;
   gap: 12px;
+  color: #8e8ea0;
   cursor: pointer;
   padding: 8px;
   border-radius: 10px;
@@ -106,7 +105,6 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* AVATAR */
 .avatar {
   width: 36px;
   height: 36px;

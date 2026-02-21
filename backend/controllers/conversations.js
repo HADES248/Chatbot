@@ -26,3 +26,16 @@ export async function getConversationById(req, res) {
     res.status(500).json({ error: "Error fetching conversation" });
   }
 }
+
+
+export async function deleteConversation(req, res) {
+  try {
+    const conversation = await Conversation.findByIdAndDelete(req.params.id);
+    if (!conversation) {
+      return res.status(404).json({ error: "Not found" });
+    }
+    res.status(200).json({ message: "Conversation deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting conversation" });
+  }
+}

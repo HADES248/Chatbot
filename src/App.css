@@ -4,7 +4,7 @@
 }
 
 .app-container {
-  max-width: 600px;
+  width: 700px;
   margin-left: auto;
   margin-right: auto;
   height: 100vh;
@@ -14,5 +14,5 @@
 
 .welcome-message {
   text-align: center;
-  color: white;
+  color: #8e8ea0;
 }

@@ -23,15 +23,15 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     const newChatMessage = [
       ...chatMessages,
       {
-        message: inputText,
+        text: inputText,
         sender: 'user',
-        id: crypto.randomUUID(),
+        _id: crypto.randomUUID(),
         time: dayjs().valueOf()
       },
       {
-        message: <img src={LoadingSpinner} height="28px" margin="-15px" />,
-        sender: 'robot',
-        id: crypto.randomUUID(),
+        text: <img src={LoadingSpinner} height="28px" margin="-15px" />,
+        sender: 'bot',
+        _id: crypto.randomUUID(),
         time: dayjs().valueOf()
       }
     ]
@@ -59,9 +59,9 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     setChatMessages([
       ...newChatMessage.slice(0, -1),
       {
-        message: geminiResponse ? geminiResponse.data.botMessage : 'Loading',
-        sender: 'robot',
-        id: crypto.randomUUID(),
+        text: geminiResponse ? geminiResponse.data.botMessage : 'Loading',
+        sender: 'bot',
+        _id: crypto.randomUUID(),
         time: dayjs().valueOf()
       }
     ])
@@ -75,11 +75,6 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     if (event.key === 'Escape') {
       setInputText('');
     }
-  }
-
-  function clearChat() {
-    localStorage.clear();
-    window.location.reload();
   }
 
   return (
@@ -99,11 +94,6 @@ export function ChatInput({ chatMessages, setChatMessages }) {
         disabled={isLoading || inputText === ''}
         className="send-button">
         Send
-      </button>
-      <button
-        className="clear-button"
-        onClick={clearChat}>
-        Clear
       </button>
     </div>
   )

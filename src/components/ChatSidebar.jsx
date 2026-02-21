@@ -1,4 +1,6 @@
+import axios from "axios";
 import "./ChatSidebar.css";
+import DeleteIcon from '../assets/delete.png'
 
 const ChatSidebar = ({
   conversations,
@@ -6,6 +8,10 @@ const ChatSidebar = ({
   onSelectConversation,
   onNewChat,
 }) => {
+  async function clearChat(id) {
+    await axios.delete(`http://localhost:4002/api/v1/conversations/${id}`)
+    window.location.reload();
+  }
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -28,6 +34,7 @@ const ChatSidebar = ({
               <span className="conversation-title">
                 {conv.title || conv.messages?.[0]?.text.slice(0, 25) || "New Conversation"}
               </span>
+              <img className="delete-button" src={DeleteIcon} onClick={() => clearChat(conv._id)} alt="Delete" />
             </div>
           ))
         )}

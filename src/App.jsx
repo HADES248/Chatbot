@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     fetchConversations();
-  }, []);
+  }, [chatMessages]);
 
   const fetchConversations = async () => {
     const res = await axios.get(
