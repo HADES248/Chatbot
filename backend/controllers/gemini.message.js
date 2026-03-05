@@ -35,9 +35,8 @@ export async function geminiMessage(req, res) {
       );
       await conversation.save();
     }
-
     return res.status(200).json({
-      conversationId: conversation._id,
+      conversationId: conversationId || conversation._id,
       userMessage: text,
       botMessage: response.text
     });

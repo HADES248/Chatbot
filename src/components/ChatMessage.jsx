@@ -3,7 +3,7 @@ import UserProfileImage from '../assets/user-1.webp'
 import dayjs from 'dayjs'
 import './ChatMessage.css';
 
-export function ChatMessage({ message, sender, time }) {
+export function ChatMessage({ message, sender, timestamp }) {
   // const message = props.message;
   // const sender = props.sender;
   // Destructuring (another way using props)
@@ -28,15 +28,11 @@ export function ChatMessage({ message, sender, time }) {
       {sender === 'bot' && (
         <img src={RobotProfileImage} className="chat-message-profile" />
       )}
-      <div className={
-        sender === 'robot'
-          ? 'chat-message-text robot-text'
-          : 'chat-message-text user-text'
-      }>
+      <div className="chat-message-text">
         {message}
-        {time && <div className="chat-message-time">
-          {dayjs(time).format('h:mma')}
-        </div>}
+        <div className="chat-message-time">
+          {dayjs(timestamp).format('h:mma')}
+        </div>
       </div>
       {sender === 'user' && (
         <img src={UserProfileImage} className="chat-message-profile" />

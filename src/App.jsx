@@ -15,24 +15,35 @@ function App() {
 
   useEffect(() => {
     fetchConversations();
-  }, [chatMessages]);
+  }, []);
 
   const fetchConversations = async () => {
-    const res = await axios.get(
-      "http://localhost:4002/api/v1/conversations"
-    );
-    setConversations(res.data);
+    try {
+      const res = await axios.get(
+        "http://localhost:4002/api/v1/conversations"
+      );
+      setConversations(res.data);
+    } catch (error) {
+      console.error("Failed to fetch conversations:", error);
+    }
   };
 
   const loadConversation = async (id) => {
-    const res = await axios.get(
-      `http://localhost:4002/api/v1/conversations/${id}`
-    );
+    try {
+      const res = await axios.get(
+        `http://localhost:4002/api/v1/conversations/${id}`
+      );
 
-    setConversationId(id);
-    setChatMessages(res.data.messages);
+      setConversationId(id);
+      setChatMessages(res.data.messages);
+    } catch (error) {
+      console.error("Failed to load conversation:", error);
+    }
   };
-
+  const addConversation = (newConversation) => {
+    console.log("Adding new conversation:", newConversation);
+    setConversations(prev => [newConversation, ...prev]);
+  };
   const startNewChat = () => {
     setConversationId(null);
     setChatMessages([]);
@@ -45,9 +56,9 @@ function App() {
   //   })
   // }, [])
 
-  useEffect(() => {
-    localStorage.setItem('messages', JSON.stringify(chatMessages));
-  }, [chatMessages])
+  // useEffect(() => {
+  //   localStorage.setItem('messages', JSON.stringify(chatMessages));
+  // }, [chatMessages])
 
   return (
     <div className="app-layout">
@@ -67,7 +78,10 @@ function App() {
 
         <ChatInput
           chatMessages={chatMessages}
+          conversationId={conversationId}
+          setConversationId={setConversationId}
           setChatMessages={setChatMessages}
+          addConversation={addConversation}
         />
       </div>
     </div>

@@ -5,10 +5,9 @@ import axios from 'axios';
 import LoadingSpinner from '../assets/loading-spinner.gif'
 import './ChatInput.css'
 
-export function ChatInput({ chatMessages, setChatMessages }) {
+export function ChatInput({ chatMessages, setChatMessages, addConversation, setConversationId, conversationId }) {
   const [inputText, setInputText] = useState('')
-  const [isLoading, setIsLoading] = useState(false);
-  const [conversationId, setConversationId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function saveInputText(event) {
     setInputText(event.target.value);
@@ -17,7 +16,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
   async function sendMessage() {
 
     setInputText('');
-    setIsLoading(true);
+    setLoading(true);
 
     // Storing in a variable and then passing it to setChatMessages to make sure the value is updated.
     const newChatMessage = [
@@ -46,26 +45,33 @@ export function ChatInput({ chatMessages, setChatMessages }) {
     //   text: inputText,
     // });
 
-    // Using gemini API
-    const geminiResponse = await axios.post("http://localhost:4002/api/v1/gemini", {
-      text: inputText,
-      conversationId
-    });
-
-    if (!conversationId) {
-      setConversationId(geminiResponse.data.conversationId);
-    }
-
-    setChatMessages([
-      ...newChatMessage.slice(0, -1),
-      {
-        text: geminiResponse ? geminiResponse.data.botMessage : 'Loading',
-        sender: 'bot',
-        _id: crypto.randomUUID(),
-        time: dayjs().valueOf()
+    try {
+      // Using gemini API
+      const geminiResponse = await axios.post("http://localhost:4002/api/v1/gemini", {
+        text: inputText,
+        conversationId
+      });
+      setChatMessages([
+        ...newChatMessage.slice(0, -1),
+        {
+          text: geminiResponse ? geminiResponse.data.botMessage : 'Loading',
+          sender: 'bot',
+          _id: crypto.randomUUID(),
+          time: dayjs().valueOf()
+        }
+      ])
+      if (!conversationId) {
+        setConversationId(geminiResponse.data.conversationId);
+        addConversation({
+          _id: geminiResponse.data.conversationId,
+          title: inputText,
+          messages: newChatMessage
+        })
       }
-    ])
-    setIsLoading(false);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function handleKeyDown(event) {
@@ -91,7 +97,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {
       />
       <button
         onClick={sendMessage}
-        disabled={isLoading || inputText === ''}
+        disabled={loading || inputText === ''}
         className="send-button">
         Send
       </button>
