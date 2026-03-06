@@ -12,6 +12,7 @@ function App() {
   const [conversations, setConversations] = useState([]);
   const [conversationId, setConversationId] = useState(null);
   const [chatMessages, setChatMessages] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchConversations();
@@ -67,11 +68,13 @@ function App() {
         activeConversationId={conversationId}
         onSelectConversation={loadConversation}
         onNewChat={startNewChat}
+        open={open}
+        setOpen={setOpen}
       />
 
-      <div className="app-container">
+      <div className={`app-container ${open ? "open" : ""}`}>
         {chatMessages.length === 0 && (
-          <p className="welcome-message">Welcome to my Project</p>
+          <p className="welcome-message">What can I help you with?</p>
         )}
 
         <ChatMessages chatMessages={chatMessages} />

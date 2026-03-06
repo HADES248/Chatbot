@@ -1,18 +1,57 @@
 .app-layout {
   display: flex;
   height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
 .app-container {
-  width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  max-width: 800px;
   height: 100vh;
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
+.app-container.open {
+  margin-left: auto;
+  margin-right: 180px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Welcome text */
 .welcome-message {
-  text-align: center;
+  flex: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #8e8ea0;
+  padding: 20px;
+  font-size: 1.2rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .app-container {
+    max-width: 600px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .app-container {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+
+  .welcome-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
 }
