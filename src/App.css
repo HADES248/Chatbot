@@ -1,6 +1,11 @@
+.app-layout,
+.app-container {
+  height: 100vh;
+  height: 100svh;
+}
+
 .app-layout {
   display: flex;
-  height: 100dvh;
   width: 100%;
   overflow: hidden;
 }
@@ -8,7 +13,6 @@
 .app-container {
   width: 100%;
   max-width: 800px;
-  height: 100vh;
   display: flex;
   margin-left: auto;
   margin-right: auto;
