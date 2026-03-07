@@ -1,7 +1,6 @@
 import axios from "axios";
 import "./ChatSidebar.css";
 import DeleteIcon from "../assets/delete.png";
-import { useState } from "react";
 
 const ChatSidebar = ({
   conversations,
@@ -13,7 +12,7 @@ const ChatSidebar = ({
 }) => {
   async function clearChat(id, e) {
     e.stopPropagation(); // prevent selecting conversation
-    await axios.delete(`http://localhost:4002/api/v1/conversations/${id}`);
+    await axios.delete(`/api/v1/conversations/${id}`);
     window.location.reload();
   }
 

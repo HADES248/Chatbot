@@ -47,7 +47,7 @@ export function ChatInput({ chatMessages, setChatMessages, addConversation, setC
 
     try {
       // Using gemini API
-      const geminiResponse = await axios.post("http://localhost:4002/api/v1/gemini", {
+      const geminiResponse = await axios.post("/api/v1/gemini", {
         text: inputText,
         conversationId
       });

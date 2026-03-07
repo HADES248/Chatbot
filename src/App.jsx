@@ -20,9 +20,7 @@ function App() {
 
   const fetchConversations = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:4002/api/v1/conversations"
-      );
+      const res = await axios.get("/api/v1/conversations");
       setConversations(res.data);
     } catch (error) {
       console.error("Failed to fetch conversations:", error);
@@ -32,7 +30,7 @@ function App() {
   const loadConversation = async (id) => {
     try {
       const res = await axios.get(
-        `http://localhost:4002/api/v1/conversations/${id}`
+        `/api/v1/conversations/${id}`
       );
 
       setConversationId(id);

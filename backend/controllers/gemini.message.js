@@ -43,6 +43,6 @@ export async function geminiMessage(req, res) {
 
   } catch (error) {
     console.error("Gemini Error:", error);
-    return res.status(500).json({ error: "Gemini failed" });
+    return res.status(500).json({ error: error.message || "Gemini failed" });
   }
 }

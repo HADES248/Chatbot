@@ -8,7 +8,7 @@ export async function getConversations(req, res) {
 
     res.status(200).json(conversations);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch conversations" });
+    res.status(500).json({ error: error.message || "Error fetching conversations" });
   }
 }
 
@@ -23,7 +23,7 @@ export async function getConversationById(req, res) {
 
     res.status(200).json(conversation);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching conversation" });
+    res.status(500).json({ error: error.message || "Error fetching conversation" });
   }
 }
 
@@ -36,6 +36,6 @@ export async function deleteConversation(req, res) {
     }
     res.status(200).json({ message: "Conversation deleted" });
   } catch (error) {
-    res.status(500).json({ error: "Error deleting conversation" });
+    res.status(500).json({ error: error.message || "Error deleting conversation" });
   }
 }
